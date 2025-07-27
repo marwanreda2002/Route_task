@@ -13,7 +13,6 @@ import '../../core/di/d_injection.dart';
 class PhotoRepoImpl implements PhotosRepo{
   PhotoRemoteDataSource photoRemoteDataSource =getIt<PhotoRemoteDataSource>();
   PhotoLocalDataSource photoLocalDataSource=getIt<PhotoLocalDataSource>();
-  PhotoRepoImpl();
   @override
   Future<Either<Failures, List<PhotoEntity>>> getPhotos({int page = 1, int perPage = 20}) async {
     final List<ConnectivityResult> connectivityResults = await Connectivity().checkConnectivity();

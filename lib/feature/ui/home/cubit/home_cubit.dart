@@ -1,9 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:route_taske/data/model/photo_model.dart';
 import 'package:route_taske/feature/ui/home/cubit/home_state.dart';
 
 import '../../../../domain/use_cases/get_photo_usecase.dart';
-
+@injectable
 class HomeCubit extends Cubit<HomeStates> {
   HomeCubit({required this.getPhotosUseCase}):super(HomeInitState());
   GetPhotosUseCase getPhotosUseCase ;

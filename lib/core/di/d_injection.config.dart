@@ -24,6 +24,7 @@ import '../../domain/repositories/data_sources/remote_data_source/photo_remote_d
     as _i960;
 import '../../domain/repositories/photo/photos_repo.dart' as _i682;
 import '../../domain/use_cases/get_photo_usecase.dart' as _i642;
+import '../../feature/ui/home/cubit/home_cubit.dart' as _i332;
 import '../api_manager/api_service.dart' as _i1065;
 import 'd_injection.dart' as _i22;
 
@@ -36,7 +37,8 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final registerModule = _$RegisterModule();
     gh.factory<_i642.GetPhotosUseCase>(() => _i642.GetPhotosUseCase());
-    gh.factory<_i361.Dio>(() => registerModule.dio);
+    gh.lazySingleton<_i361.Dio>(() => registerModule.dio);
+    gh.lazySingleton<_i1065.ApiService>(() => registerModule.apiService);
     gh.factory<_i682.PhotosRepo>(() => _i514.PhotoRepoImpl());
     gh.factory<_i286.PhotoLocalDataSource>(
       () => _i999.PhotoLocalDataSourceImpl(),
@@ -44,6 +46,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i960.PhotoRemoteDataSource>(
       () =>
           _i212.PhotoRemoteDataSourceImpl(apiService: gh<_i1065.ApiService>()),
+    );
+    gh.factory<_i332.HomeCubit>(
+      () => _i332.HomeCubit(getPhotosUseCase: gh<_i642.GetPhotosUseCase>()),
     );
     return this;
   }

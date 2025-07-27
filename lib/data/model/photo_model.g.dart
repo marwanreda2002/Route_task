@@ -7,7 +7,7 @@ part of 'photo_model.dart';
 // **************************************************************************
 
 Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
-  id: (json['id'] as num).toInt(),
+  id: Photo._idFromJson(json['id']),
   src: Src.fromJson(json['src'] as Map<String, dynamic>),
 );
 
@@ -16,8 +16,10 @@ Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
   'src': instance.src,
 };
 
-Src _$SrcFromJson(Map<String, dynamic> json) =>
-    Src(original: json['original'] as String, medium: json['medium'] as String);
+Src _$SrcFromJson(Map<String, dynamic> json) => Src(
+  original: Src._stringFromJson(json['original']),
+  medium: Src._stringFromJson(json['medium']),
+);
 
 Map<String, dynamic> _$SrcToJson(Src instance) => <String, dynamic>{
   'original': instance.original,
