@@ -8,6 +8,7 @@ import 'package:route_taske/core/bloc_observer.dart';
 import 'package:route_taske/feature/ui/splash_screen.dart';
 
 import 'core/api_manager/api_service.dart';
+import 'core/cahe_helper.dart';
 import 'core/di/d_injection.dart';
 
 ApiService createApiService() {
@@ -27,16 +28,8 @@ void main()async {
   configureDependencies();
   final dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
+  CashHelper.init();
 
-  // PhotosRepo photosRepo= getIt<PhotosRepo>();
-  // HomeCubit homeCubit=getIt<HomeCubit>();
-  // try {
-  //   // final response = await homeCubit.getPhotos();
-  //   print('API Response: $homeCubit.getPhotos()');
-  //   // print('Photos count: ${response.fold((l) => 0, (r) => r.length)}');
-  // } catch (e) {
-  //   print('API Error: $e');
-  // }
   runApp( MyApp());
 }
 

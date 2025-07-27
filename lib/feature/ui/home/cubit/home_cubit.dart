@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:route_taske/data/model/photo_model.dart';
@@ -21,6 +22,15 @@ class HomeCubit extends Cubit<HomeStates> {
       print("Marwan success ${response.length}");
       return emit(HomeSuccessState(response as List<Photo>));
     });
+  }
+
+  Future<bool> CheckInternet()async{
+    List<ConnectivityResult> result = await Connectivity().checkConnectivity() ;
+    if(result.contains(ConnectivityResult.wifi) || result.contains(ConnectivityResult.mobile)){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
 

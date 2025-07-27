@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/cahe_helper.dart';
 import 'home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
@@ -32,8 +34,9 @@ class _SplashScreenState extends State<SplashScreen> {
           Spacer(),
           Center(
             child: Image.asset(
-              "assets/images/img.png",
+              "assets/images/route.png",
               width: 300,
+              color: Colors.blue,
               height: 300,
             ),
           ),
